@@ -1,77 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include("partials/header.ejs") %>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EJS Tags</title>
-</head>
 
-<body>
-  <h1>
-    <!-- Tite goes here -->
-    <%=title %>
-  </h1>
-  <p>Current second:
-    <!-- Current second goes here -->
-    <span id="seconds">
-      <%=seconds %>
-    </span>
+  <h1>Home Page</h1>
+
+  <p>Lorem ipsum dolor sit amet, et proin, justo mus. Porta suspendisse turpis netus sagittis tortor at, vitae aliquet
+    pharetra cras velit, id gravida, neque nulla lorem, posuere hac. Ultricies eget lacus vehicula, in ante aliquam
+    et,facilisis tempor duis orci. Sed molestie sem in duis eu id, nisl id ultricies metus blandit eget praesent, pede
+    tempornullam, vitae arcu tortor suspendisse nibh risus. Nulla id suscipit reiciendis nulla erat. Porta enim aute
+    luctus,ducimus sodales dolor.
   </p>
-  <div id="container">
-  <% if (seconds % 2===0) { %>
-  <ul>
-    <!-- List goes here if current second is even. -->
-    <!-- Otherwise it should display the following: -->
-    <!-- <p>No items to display</p> -->
-    <li id="currentSecs"><%= seconds  %></li>
-  </ul>
-  <% } else { %>
-  <p id="empty">No items to display</p>
-  <% } %>
-</div>
   <p>
-    <!-- HTML content goes here -->
-  </p>
+    Quam purus justo enim purus, dolor enim, ut eu lectus nam eget nibh. Ante illum nullam leo, vivamus aliquam massa
+    massainceptos fermentum porttitor, blandit vehicula, lorem in placerat ut aliquam at sociosqu. Vivamus duis
+    ultricies
+    aliquam placerat, tincidunt scelerisque imperdiet, egestas erat vel. Libero rerum. Donec ligula tristique, purus
+    montes,
+    feugiatid nunc in a nec. Duis odio, vitae sed etiam mi massa, laoreet amet purus amet rhoncus, eget sed, arcu
+    urna.
+    Maecenaswisi id, at donec enim. Proin nisl, pulvinar leo suspendisse, cum parturient non, congue leo et ut in,
+    neque ut
+    lacusauctor quam fermentum urna. Metus quis, mauris dictum aptent ultrices nulla viverra ornare, tempor elit enim
+    leo
+    donec,sed sed. Vivamus sapien facilisi, tempor arcu nulla justo sed et, eget suspendisse lacus sed nunc mattis
+    lectus.
+    Metusgravida.</p>
 
-  <!-- Footer goes here -->
-  <%- include("footer") %>
-  <script type="text/javascript">
-    let seconds = document.getElementById('seconds');
-    let counter;
-    setInterval(() => {
-      counter = new Date().getSeconds();
-      seconds.innerText = counter;
-    }, 1000);  
-
-    let listItem = document.getElementById('currentSecs');
-    let emptyList = document.getElementById('empty');
-    const container = document.getElementById('container');
-
-    setInterval(() => {
-      if (counter % 2===0) {
-        listItem.innerText = counter;
-        listItem.style.display = 'block';
-        if(emptyList) {
-          container.removeChild(emptyList);
-        }
-      } else {
-        if(listItem) {
-          listItem.style.display = 'none';
-          container.removeChild(listItem);
-        } else {
-          seconds = document.createElement('li');
-          seconds.innerText = counter;
-          container.appendChild(seconds);
-        }
-        listItem.style.display = 'none';
-        emptyList = document.createElement('p');
-        emptyList.innerText = 'No items to display';
-        emptyList.style.display = 'block';
-        container.appendChild(emptyList);
-      }
-    }, 1000);
-  </script>
-</body>
-
-</html>
+  <%- include("partials/footer.ejs") %>
