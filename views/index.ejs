@@ -10,24 +10,68 @@
 <body>
   <h1>
     <!-- Tite goes here -->
+    <%=title %>
   </h1>
   <p>Current second:
     <!-- Current second goes here -->
+    <span id="seconds">
+      <%=seconds %>
+    </span>
   </p>
-  if (seconds % 2===0) {
+  <div id="container">
+  <% if (seconds % 2===0) { %>
   <ul>
     <!-- List goes here if current second is even. -->
     <!-- Otherwise it should display the following: -->
     <!-- <p>No items to display</p> -->
+    <li id="currentSecs"><%= seconds  %></li>
   </ul>
-  } else {
-  <p>No items to display</p>
-  }
+  <% } else { %>
+  <p id="empty">No items to display</p>
+  <% } %>
+</div>
   <p>
     <!-- HTML content goes here -->
   </p>
 
   <!-- Footer goes here -->
+  <%- include("footer") %>
+  <script type="text/javascript">
+    let seconds = document.getElementById('seconds');
+    let counter;
+    setInterval(() => {
+      counter = new Date().getSeconds();
+      seconds.innerText = counter;
+    }, 1000);  
+
+    let listItem = document.getElementById('currentSecs');
+    let emptyList = document.getElementById('empty');
+    const container = document.getElementById('container');
+
+    setInterval(() => {
+      if (counter % 2===0) {
+        listItem.innerText = counter;
+        listItem.style.display = 'block';
+        if(emptyList) {
+          container.removeChild(emptyList);
+        }
+      } else {
+        if(listItem) {
+          listItem.style.display = 'none';
+          container.removeChild(listItem);
+        } else {
+          seconds = document.createElement('li');
+          seconds.innerText = counter;
+          container.appendChild(seconds);
+        }
+        listItem.style.display = 'none';
+        emptyList = document.createElement('p');
+        emptyList.innerText = 'No items to display';
+        emptyList.style.display = 'block';
+        container.appendChild(emptyList);
+      }
+    }, 1000);
+  </script>
 </body>
 
 </html>
